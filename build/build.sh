@@ -3,16 +3,18 @@
 GAME="waves"
 
 # Make .love file
-cd love/
-zip -9 -r ${GAME}.love ../../src/*
+cd ../src/
+zip -9 -r ${GAME}.love *
+cd ../build/love
+cp ../../src/${GAME}.love .
 
 # Make 32 and 64 bit .exe files
 cd ../win32
 cat love.exe ../love/${GAME}.love > bin/${GAME}.exe
-zip -9 bin/${GAME}.zip *
+zip -r -9 bin/${GAME}.zip -j *
 cd ../win64
 cat love.exe ../love/${GAME}.love > bin/${GAME}.exe
-zip -9 bin/${GAME}.zip *
+zip -r -9 bin/${GAME}.zip -j *
 
 # Make Mac app
 GAME_IDENTIFIER="waves"
@@ -24,4 +26,5 @@ cp ../love/${GAME}.love bin/${GAME}.app/Contents/Resources/
 cp usethisone.plist bin/${GAME}.app/Contents/Info.plist
 sed -i "s/GAME_NAME/$GAME_NAME/g" bin/${GAME}.app/Contents/Info.plist
 sed -i "s/GAME_IDENTIFIER/$GAME_IDENTIFIER/g" bin/${GAME}.app/Contents/Info.plist
-zip -y -9 -r bin/${GAME}_osx bin/waves.app
+cd bin/
+zip -y -9 -r ${GAME}_osx waves.app
