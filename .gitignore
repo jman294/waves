@@ -28,14 +28,16 @@ luac.out
 # Shared objects (inc. Windows DLLs)
 *.so
 *.so.*
-*.dll
+src/*.dll
 *.dylib
 
 # Executables
 *.out
-*.exe
-*.app
+src/*.exe
+src/*.app
 *.i*86
 *.x86_64
 *.hex
 
+# Special Cases
+build/*/bin/*
